@@ -1,7 +1,6 @@
 # EcommerceApplication
 ## Description
 A capstone project from HCL and Verizon to create a mock up e-commerce web application. 
-![image](https://user-images.githubusercontent.com/72631106/177656929-50b281a0-ae15-46a4-9ee4-9cc51165b96f.png)
 ## Latest Update
 Added login page for users to sign in to. Users can log in as admin and be redirected to user-list.jps,
 or as customers and be redirected to temporary placeholder page. Incorrect login information results in redirect back to login page.
