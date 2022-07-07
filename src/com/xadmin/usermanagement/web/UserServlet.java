@@ -146,15 +146,21 @@ public class UserServlet extends HttpServlet {
 	}
 	
 	//insert user
-	private void insertUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+	private void insertUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String billingAddress = request.getParameter("billing_address");
 		User newUser = new User(name, email, password, billingAddress);
-		
-		userDao.insertUser(newUser);
-		response.sendRedirect("list");
+		if(userDao.searchEmail(email) != null) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.jsp");
+			dispatcher.forward(request, response);
+		}
+		else {
+			userDao.insertUser(newUser);
+			response.sendRedirect("list");
+		}
+	
 	}
 	
 	//delete user

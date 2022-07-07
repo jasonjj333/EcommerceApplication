@@ -23,7 +23,7 @@ public class UserDao {
 	private static final String DELETE_USERS_SQL = "DELETE FROM customers WHERE customerId = ?;";
 	private static final String UPDATE_USERS_SQL = "UPDATE customers SET name = ?, email = ?, password = ?, billing_address = ? WHERE customerId = ?;";
 	private static final String SELECT_USER_BY_EMAIL_PASSWORD = "SELECT * FROM customers WHERE email = ? AND password = ?;";
-	
+	private static final String SELECT_USER_BY_EMAIL = "SELECT * FROM customers WHERE email = ?;";
 	public UserDao() {
 		
 	}
@@ -179,6 +179,33 @@ public class UserDao {
 			while(rs.next()) {
 				int id = rs.getInt("customerId");
 				String name = rs.getString("name");
+				String billingAddress = rs.getString("billing_address");
+				int admin = rs.getInt("admin");
+				System.out.println("User Found: " + id + " " + name);
+				user = new User(id,name,email,password,billingAddress,admin);
+			}
+			
+		} catch (SQLException e) {
+			printSQLException(e);
+		}
+		return user;
+	}
+	
+	public User searchEmail(String email) {
+		User user = null;
+		try(Connection connection = getConnection();
+				//Create statement using connection object
+				PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_EMAIL);) {
+			preparedStatement.setString(1, email);
+			System.out.println(preparedStatement);
+			//Execute or update query
+			ResultSet rs = preparedStatement.executeQuery();
+			System.out.println(rs);
+			//Process result set object
+			while(rs.next()) {
+				int id = rs.getInt("customerId");
+				String name = rs.getString("name");
+				String password = rs.getString("password");
 				String billingAddress = rs.getString("billing_address");
 				int admin = rs.getInt("admin");
 				System.out.println("User Found: " + id + " " + name);
