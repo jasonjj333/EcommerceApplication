@@ -11,7 +11,7 @@ or as customers and be redirected to temporary placeholder page. Incorrect login
 - [ ] [user-form.jsp](/WebContent/user-form.jsp) is shared between customers and admins making accounts, should be seperate
 #### Start on handling products:
 - [ ] Create products table and POJO
-- [ ] Implement product-list.jsp to display all products for admins (similar to user-list.jsp)
+- [ ] Implement product-list.jsp to display all products for admins (similar to [user-list.jsp](/WebContent/user-list.jsp))
 - [ ] Implement different product list view for customers
 - [ ] Add 'Product List' Button to user-list and redirect to product-list.jsp
 #### Start on handling order details:
