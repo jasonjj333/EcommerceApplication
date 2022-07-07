@@ -5,10 +5,10 @@ A capstone project from HCL and Verizon to create a mock up e-commerce web appli
 Added login page for users to sign in to. Users can log in as admin and be redirected to user-list.jps,
 or as customers and be redirected to temporary placeholder page. Incorrect login information results in redirect back to login page.
 ## What To Improve
-- [x] Add 'Create New Account' Button to login page and redirect to [user-form.jsp](/tree/main/WebContent/user-form.jsp)
-- [x] Prohibit accounts with existing email to be created in [user-form.jsp](/tree/main/WebContent/user-form.jsp)
+- [x] Add 'Create New Account' Button to login page and redirect to [user-form.jsp](/WebContent/user-form.jsp)
+- [x] Prohibit accounts with existing email to be created in [user-form.jsp](/WebContent/user-form.jsp)
 - [ ] Have user account information saved across page redirects and displayed after login
-- [ ] [user-form.jsp](/tree/main/WebContent/user-form.jsp) is shared between customers and admins making accounts, should be seperate
+- [ ] [user-form.jsp](/WebContent/user-form.jsp) is shared between customers and admins making accounts, should be seperate
 #### Start on handling products:
 - [ ] Create products table and POJO
 - [ ] Implement product-list.jsp to display all products for admins (similar to user-list.jsp)
