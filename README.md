@@ -13,7 +13,7 @@ or as customers and be redirected to temporary placeholder page. Incorrect login
 - [ ] Create products table and POJO
 - [ ] Implement product-list.jsp to display all products for admins (similar to [user-list.jsp](/WebContent/user-list.jsp))
 - [ ] Implement different product list view for customers
-- [ ] Add 'Product List' Button to user-list and redirect to product-list.jsp
+- [ ] Add 'Product List' Button to [user-list.jsp](/WebContent/user-list.jsp) and redirect to product-list.jsp
 #### Start on handling order details:
 - [ ] Create orderdetails table and POJO
 - [ ] Implement order-detail-list.jsp to display all order details
@@ -21,7 +21,7 @@ or as customers and be redirected to temporary placeholder page. Incorrect login
 #### Start on handling orders:
 - [ ] Create orders table and POJO
 - [ ] Implement order-list.jsp to display all orders
-- [ ] Add 'Orders List' Button to user-list and redirect to order-list.jsp
+- [ ] Add 'Orders List' Button to [user-list.jsp](/WebContent/user-list.jsp) and redirect to order-list.jsp
 
 ![image](https://user-images.githubusercontent.com/72631106/177692494-c1110d05-a230-441d-88e2-43facbbf8cf3.png)
 
