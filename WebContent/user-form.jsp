@@ -16,7 +16,8 @@
 		<nav class="navbar navbar-expand-md navbar-dark"
 			style="background-color: #2b3b54"">
 			<div>
-				<a href="https://www.xadmin.net" class="navbar-brand" style="color:white"> User Management Application </a>
+				<a href="https://www.xadmin.net" class="navbar-brand"
+					style="color: white"> User Management Application </a>
 			</div>
 
 			<ul class="navbar-nav">
@@ -70,9 +71,16 @@
 
 				<fieldset class="form-group">
 					<label>Billing Address</label> <input type="text"
-						value="<c:out value='${user.billingAddress}' />" class="form-control"
-						name="billing_address">
+						value="<c:out value='${user.billingAddress}' />"
+						class="form-control" name="billing_address">
 				</fieldset>
+				<c:if test="${accountUser != null && accountUser.admin == 1}">
+					<fieldset class="form-group">
+						<label>Admin</label> <input type="text"
+							value="<c:out value='${user.admin}' />" class="form-control"
+							name="admin">
+					</fieldset>
+				</c:if>
 
 				<button type="submit" class="btn btn-success">Save</button>
 				</form>

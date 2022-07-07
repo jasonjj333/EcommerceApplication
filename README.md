@@ -7,8 +7,11 @@ or as customers and be redirected to temporary placeholder page. Incorrect login
 ## What To Improve
 - [x] Add 'Create New Account' Button to login page and redirect to [user-form.jsp](/WebContent/user-form.jsp)
 - [x] Prohibit accounts with existing email to be created in [user-form.jsp](/WebContent/user-form.jsp)
-- [ ] Have user account information saved across page redirects and displayed after login
-- [ ] [user-form.jsp](/WebContent/user-form.jsp) is shared between customers and admins making accounts, should be seperate
+- [x] Have user account information saved across page redirects and displayed after login
+- [ ] Account User stored in UserServlet and need to 'request.setAttribute("accountUser",accountUser)' for each new jsp page. Find more optimal solution  
+- [x] [user-form.jsp](/WebContent/user-form.jsp) is shared between customers and admins making accounts, should be seperate
+- [ ] [user-form.jsp](/WebContent/user-form.jsp) provides visibility based on logged in account. Change redirect after submitting (customer -> customer-page.jsp | admin -> user-list.jsp)
+- [ ] Create log out button and function to clear account credentials
 #### Start on handling products:
 - [ ] Create products table and POJO
 - [ ] Implement product-list.jsp to display all products for admins (similar to [user-list.jsp](/WebContent/user-list.jsp))

@@ -22,6 +22,7 @@ import com.xadmin.usermanagement.dao.UserDao;
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private UserDao userDao;
+    private User accountUser;
 	/**
 	 * @see Servlet#init(ServletConfig)
 	 */
@@ -122,6 +123,7 @@ public class UserServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		if(userDao.searchEmailPassword(email, password) != null) {
 			user = userDao.searchEmailPassword(email, password);
+			accountUser = user;
 			System.out.println("Logging in user: " + user.getName() + " " + user.getId() + " admin:" + user.getAdmin());
 			if(user.getAdmin() == 0) {
 				System.out.println("Redirecting to Customer Page...");
@@ -142,6 +144,7 @@ public class UserServlet extends HttpServlet {
 
 	private void showNewForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.jsp");
+		request.setAttribute("accountUser", accountUser);
 		dispatcher.forward(request, response);
 	}
 	
@@ -151,14 +154,26 @@ public class UserServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String billingAddress = request.getParameter("billing_address");
+		System.out.println("Attempting to insert: " + name + " " + email);
 		User newUser = new User(name, email, password, billingAddress);
 		if(userDao.searchEmail(email) != null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.jsp");
 			dispatcher.forward(request, response);
 		}
 		else {
-			userDao.insertUser(newUser);
-			response.sendRedirect("list");
+			if(request.getParameter("admin") == null || !request.getParameter("admin").equals("1")) {
+				newUser.setAdmin(0);
+				userDao.insertUser(newUser);
+				System.out.println("Added customer");
+				response.sendRedirect("list");
+			}
+			else {
+				newUser.setAdmin(1);
+				userDao.insertUser(newUser);
+				System.out.println("Added admin");
+				response.sendRedirect("list");
+			}
+
 		}
 	
 	}
@@ -182,6 +197,7 @@ public class UserServlet extends HttpServlet {
 			existingUser = userDao.selectUser(id);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.jsp");
 			request.setAttribute("user", existingUser);
+			request.setAttribute("accountUser", accountUser);
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -196,6 +212,12 @@ public class UserServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		String billingAddress = request.getParameter("billing_address");
 		User user = new User(id, name, email, password, billingAddress);
+		if(request.getParameter("admin") == null || !request.getParameter("admin").equals("1")) {
+			user.setAdmin(0);
+		}
+		else {
+			user.setAdmin(1);
+		}
 		userDao.updateUser(user);
 		response.sendRedirect("list");
 	}
@@ -205,6 +227,7 @@ public class UserServlet extends HttpServlet {
 		try {
 			List<User> listUser = userDao.selectAllUsers();
 			request.setAttribute("listUser", listUser);
+			request.setAttribute("accountUser", accountUser);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("user-list.jsp");
 			dispatcher.forward(request, response);
 		} catch (Exception e) {

@@ -17,11 +17,12 @@ public class UserDao {
 	private String jdbcPassword = "Awesome33@";
 	private String jdbcDriver = "com.mysql.jdbc.Driver";
 	
-	private static final String INSERT_USERS_SQL = "INSERT INTO customers" + " (name,email,password,billing_address) VALUES " + " (?,?,?,?);";
+	private static final String INSERT_USERS_SQL = "INSERT INTO customers" + " (name,email,password,billing_address,admin) VALUES " + " (?,?,?,?,?);";
+	private static final String INSERT_USERS_ADMIN = "INSERT INTO customers" + " (name,email,password,billing_address,admin) VALUES " + " (?,?,?,?,?);";
 	private static final String SELECT_USER_BY_ID = "SELECT customerId,name,email,password,billing_address FROM customers WHERE customerId=?";
 	private static final String SELECT_ALL_USERS = "SELECT * FROM customers";
 	private static final String DELETE_USERS_SQL = "DELETE FROM customers WHERE customerId = ?;";
-	private static final String UPDATE_USERS_SQL = "UPDATE customers SET name = ?, email = ?, password = ?, billing_address = ? WHERE customerId = ?;";
+	private static final String UPDATE_USERS_SQL = "UPDATE customers SET name = ?, email = ?, password = ?, billing_address = ?, admin = ? WHERE customerId = ?;";
 	private static final String SELECT_USER_BY_EMAIL_PASSWORD = "SELECT * FROM customers WHERE email = ? AND password = ?;";
 	private static final String SELECT_USER_BY_EMAIL = "SELECT * FROM customers WHERE email = ?;";
 	public UserDao() {
@@ -45,11 +46,12 @@ public class UserDao {
 	public void insertUser(User user) {
 		System.out.println(INSERT_USERS_SQL);
 		try (Connection connection = getConnection();
-				PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
+				PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_ADMIN)) {
 			preparedStatement.setNString(1, user.getName());
 			preparedStatement.setNString(2, user.getEmail());
 			preparedStatement.setNString(3, user.getPassword());
 			preparedStatement.setNString(4, user.getBillingAddress());
+			preparedStatement.setInt(5, user.getAdmin());
 			System.out.println(preparedStatement);
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
@@ -126,7 +128,8 @@ public class UserDao {
 					preparedStatement.setNString(2, user.getEmail());
 					preparedStatement.setNString(3, user.getPassword());
 					preparedStatement.setNString(4, user.getBillingAddress());
-					preparedStatement.setInt(5, user.getId());
+					preparedStatement.setInt(5, user.getAdmin());
+					preparedStatement.setInt(6, user.getId());
 					
 					rowUpdated = preparedStatement.executeUpdate() > 0;
 				}

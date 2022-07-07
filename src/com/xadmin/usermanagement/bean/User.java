@@ -34,6 +34,15 @@ public class User {
 		this.password = password;
 		this.billingAddress = billingAddress;
 	}
+	public User(String name, String email, String password, String billingAddress, int admin) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.billingAddress = billingAddress;
+		this.admin = admin;
+	}
+
 	public int getAdmin() {
 		return admin;
 	}
