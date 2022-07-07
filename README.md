@@ -7,6 +7,7 @@ or as customers and be redirected to temporary placeholder page. Incorrect login
 ## What To Improve
 - [x] Add 'Create New Account' Button to login page and redirect to user-form.jsp
 - [x] Prohibit accounts with existing email to be created in user-form.jsp
+- [ ] user-form is shared between customers and admins making accounts, should be seperate
 ###### Start on handling products:
 - [ ] Create products table and POJO
 - [ ] Implement product-list.jsp to display all products for admins (similar to user-list.jsp)
