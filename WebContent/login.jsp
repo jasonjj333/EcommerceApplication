@@ -14,10 +14,10 @@
 <body>
 
 	<header>
-		<nav class="navbar navbar-expand-md navbar-dark"
-			style="background-color: blue">
+		<nav class="navbar navbar-expand-md"
+			style="background-color: #2b3b54">
 			<div>
-				<a href="https://www.xadmin.net" class="navbar-brand"> User
+				<a href="https://www.xadmin.net" class="navbar-brand" style="color: white"> User
 					Management Application </a>
 			</div>
 		</nav>
@@ -33,15 +33,17 @@
 					<fieldset class="form-group">
 						<label>User Email</label> <input type="text"
 							value="<c:out value='${user.email}' />" class="form-control"
-							name="email">
+							name="email" required="required">
 					</fieldset>
 					<fieldset class="form-group">
-						<label>Password</label> <input type="text"
+						<label>Password</label> <input type= "password" minlength="8"
 							value="<c:out value='${user.password}' />" class="form-control"
-							name="password">
+							name="password" required="required">
 					</fieldset>
 
 					<button type="submit" class="btn btn-success">Login</button>
+					&nbsp;&nbsp;&nbsp;
+					<a href ="<%=request.getContextPath()%>/new" class = "btn btn-success">Create New Account</a>
 				</form>
 			</div>
 		</div>

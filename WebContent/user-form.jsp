@@ -14,9 +14,9 @@
 
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark"
-			style="background-color: blue">
+			style="background-color: #2b3b54"">
 			<div>
-				<a href="https://www.xadmin.net" class="navbar-brand"> User Management Application </a>
+				<a href="https://www.xadmin.net" class="navbar-brand" style="color:white"> User Management Application </a>
 			</div>
 
 			<ul class="navbar-nav">
@@ -52,7 +52,7 @@
 				</c:if>
 
 				<fieldset class="form-group">
-					<label>User Name</label> <input type="text"
+					<label>Name</label> <input type="text"
 						value="<c:out value='${user.name}' />" class="form-control"
 						name="name" required="required">
 				</fieldset>
@@ -63,7 +63,7 @@
 						name="email">
 				</fieldset>
 				<fieldset class="form-group">
-					<label>Password</label> <input type="text"
+					<label>Password</label> <input type="password" minlength="8"
 						value="<c:out value='${user.password}' />" class="form-control"
 						name="password">
 				</fieldset>

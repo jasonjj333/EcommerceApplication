@@ -10,9 +10,9 @@
 </head>
 <body>
 	<header>
-		<nav class = "navbar navbar-expand-md navbar-dark" style = "background-color: blue">
+		<nav class = "navbar navbar-expand-md" style = "background-color: #2b3b54">
 			<div>
-				<a href = "http://www.xadmin.net" class = "navbar-brand">User Management Application</a>
+				<a href = "http://www.xadmin.net" class = "navbar-brand" style="color:white">User Management Application</a>
 			</div>
 			
 			<ul class = "navbar-nav">
