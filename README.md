@@ -21,5 +21,5 @@ or as customers and be redirected to temporary placeholder page. Incorrect login
 - [ ] Implement order-list.jsp to display all orders
 - [ ] Add 'Orders List' Button to user-list and redirect to order-list.jsp
 
-![image](https://user-images.githubusercontent.com/72631106/177692494-c1110d05-a230-441d-88e2-43facbbf8cf3.png = 100)
+![image](https://user-images.githubusercontent.com/72631106/177692494-c1110d05-a230-441d-88e2-43facbbf8cf3.png = 250x)
 
