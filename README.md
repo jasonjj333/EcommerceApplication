@@ -16,4 +16,3 @@ or as customers and be redirected to temporary placeholder page. Incorrect login
 - [ ] Implement different product list view for customers
 - [ ] Add 'Product List' Button to user-list and redirect to product-list.jsp
 
-![image](https://user-images.githubusercontent.com/72631106/177657598-5d2ff6ad-eff8-419f-b7b2-6e123a7125f0.png)
