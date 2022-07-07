@@ -2,8 +2,7 @@
 ## Description
 A capstone project from HCL and Verizon to create a mock up e-commerce web application. 
 ## Latest Update
-Added login page for users to sign in to. Users can log in as admin and be redirected to user-list.jps,
-or as customers and be redirected to temporary placeholder page. Incorrect login information results in redirect back to login page.
+Added login page for users to sign in to. Users can log in as admin and be redirected to user-list.jps, or as customers and be redirected to temporary placeholder page. Incorrect login information results in redirect back to login page. Log in credentials now saved across pages.
 ## What To Improve
 - [x] Add 'Create New Account' Button to login page and redirect to [user-form.jsp](/WebContent/user-form.jsp)
 - [x] Prohibit accounts with existing email to be created in [user-form.jsp](/WebContent/user-form.jsp)
