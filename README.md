@@ -20,5 +20,6 @@ or as customers and be redirected to temporary placeholder page. Incorrect login
 - [ ] Create orders table and POJO
 - [ ] Implement order-list.jsp to display all orders
 - [ ] Add 'Orders List' Button to user-list and redirect to order-list.jsp
-<img alt="drawing" width="200"/>
+
 ![image](https://user-images.githubusercontent.com/72631106/177692494-c1110d05-a230-441d-88e2-43facbbf8cf3.png)
+
