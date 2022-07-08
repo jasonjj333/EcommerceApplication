@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.xadmin.usermanagement.bean.User;
 import com.xadmin.usermanagement.dao.UserDao;
@@ -22,7 +23,7 @@ import com.xadmin.usermanagement.dao.UserDao;
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private UserDao userDao;
-    private User accountUser;
+    HttpSession session;
 	/**
 	 * @see Servlet#init(ServletConfig)
 	 */
@@ -94,6 +95,15 @@ public class UserServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			break;
+			
+		case "/logout":
+			try {
+				logoutUser(request, response);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
 
 		// handles list redirect
 		case "/list":
@@ -116,8 +126,19 @@ public class UserServlet extends HttpServlet {
 		}
 	}
 	
+	private void logoutUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			session.invalidate();
+		} catch (IllegalStateException e) {
+			System.out.println("Session invalidated already.");
+		}
+		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+		dispatcher.forward(request, response);
+	}
+
 	private void sendUserHome(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		if(accountUser.getAdmin() == 1) {
+		System.out.println("Session Admin: " + session.getAttribute("accountAdmin"));
+		if(((int)session.getAttribute("accountAdmin")) == 1) {
 			response.sendRedirect("list");
 		}
 		else {
@@ -133,7 +154,13 @@ public class UserServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		if(userDao.searchEmailPassword(email, password) != null) {
 			user = userDao.searchEmailPassword(email, password);
-			accountUser = user;
+			session = request.getSession();
+			session.setAttribute("accountId", user.getId());
+			session.setAttribute("accountName", user.getName());
+			session.setAttribute("accountEmail", user.getEmail());
+			session.setAttribute("accountPassword", user.getPassword());
+			session.setAttribute("accountBillingAddress", user.getBillingAddress());
+			session.setAttribute("accountAdmin", user.getAdmin());
 			System.out.println("Logging in user: " + user.getName() + " " + user.getId() + " admin:" + user.getAdmin());
 			sendUserHome(request, response);
 		}
@@ -146,7 +173,6 @@ public class UserServlet extends HttpServlet {
 
 	private void showNewForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.jsp");
-		request.setAttribute("accountUser", accountUser);
 		dispatcher.forward(request, response);
 	}
 	
@@ -169,8 +195,14 @@ public class UserServlet extends HttpServlet {
 			else {
 				newUser.setAdmin(1);
 			}
-			if(accountUser == null) {
-				accountUser = newUser;
+			if(request.getAttribute("accountId") == null) {
+				session = request.getSession();
+				session.setAttribute("accountId", newUser.getId());
+				session.setAttribute("accountName", newUser.getName());
+				session.setAttribute("accountEmail", newUser.getEmail());
+				session.setAttribute("accountPassword", newUser.getPassword());
+				session.setAttribute("accountBillingAddress", newUser.getBillingAddress());
+				session.setAttribute("accountAdmin", newUser.getAdmin());
 			}
 			userDao.insertUser(newUser);
 			sendUserHome(request, response);
@@ -197,7 +229,6 @@ public class UserServlet extends HttpServlet {
 			existingUser = userDao.selectUser(id);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.jsp");
 			request.setAttribute("user", existingUser);
-			request.setAttribute("accountUser", accountUser);
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -227,12 +258,12 @@ public class UserServlet extends HttpServlet {
 		try {
 			List<User> listUser = userDao.selectAllUsers();
 			request.setAttribute("listUser", listUser);
-			request.setAttribute("accountUser", accountUser);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("user-list.jsp");
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
 
 }
