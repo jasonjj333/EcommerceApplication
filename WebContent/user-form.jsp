@@ -14,7 +14,7 @@
 
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark"
-			style="background-color: #2b3b54"">
+			style="background-color: #2b3b54">
 			<div>
 				<a href="https://www.xadmin.net" class="navbar-brand"
 					style="color: white"> User Management Application </a>

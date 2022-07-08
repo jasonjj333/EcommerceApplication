@@ -116,6 +116,16 @@ public class UserServlet extends HttpServlet {
 		}
 	}
 	
+	private void sendUserHome(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		if(accountUser.getAdmin() == 1) {
+			response.sendRedirect("list");
+		}
+		else {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("customer-page.jsp");
+			dispatcher.forward(request, response);
+		}
+	}
+	
 	
 	private void loginUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		User user;
@@ -125,15 +135,7 @@ public class UserServlet extends HttpServlet {
 			user = userDao.searchEmailPassword(email, password);
 			accountUser = user;
 			System.out.println("Logging in user: " + user.getName() + " " + user.getId() + " admin:" + user.getAdmin());
-			if(user.getAdmin() == 0) {
-				System.out.println("Redirecting to Customer Page...");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("customer-page.jsp");
-				dispatcher.forward(request, response);
-			}
-			else {
-				System.out.println("Redirecting to Admin Page...");
-				response.sendRedirect("list");
-			}
+			sendUserHome(request, response);
 		}
 		else {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
@@ -163,17 +165,15 @@ public class UserServlet extends HttpServlet {
 		else {
 			if(request.getParameter("admin") == null || !request.getParameter("admin").equals("1")) {
 				newUser.setAdmin(0);
-				userDao.insertUser(newUser);
-				System.out.println("Added customer");
-				response.sendRedirect("list");
 			}
 			else {
 				newUser.setAdmin(1);
-				userDao.insertUser(newUser);
-				System.out.println("Added admin");
-				response.sendRedirect("list");
 			}
-
+			if(accountUser == null) {
+				accountUser = newUser;
+			}
+			userDao.insertUser(newUser);
+			sendUserHome(request, response);
 		}
 	
 	}
@@ -205,7 +205,7 @@ public class UserServlet extends HttpServlet {
 	}
 	
 	//update
-	private void updateUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+	private void updateUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
 		int id = Integer.parseInt(request.getParameter("id"));
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
@@ -219,7 +219,7 @@ public class UserServlet extends HttpServlet {
 			user.setAdmin(1);
 		}
 		userDao.updateUser(user);
-		response.sendRedirect("list");
+		sendUserHome(request, response);
 	}
 	
 	//default
