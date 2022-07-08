@@ -13,7 +13,7 @@
 <body>
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark"
-			style="background-color: #2b3b54">
+			style="background-color: #333232">
 			<div>
 				<a href="https://www.xadmin.net" class="navbar-brand"
 					style="color: white"> User Management Application </a>
@@ -23,6 +23,14 @@
 				<li><a href="<%=request.getContextPath()%>/list"
 					class="nav-link">Users</a></li>
 			</ul>
+			
+			<c:if test="${accountId != null}">
+				<ul class="navbar-nav">
+					<li>
+						<a href="<%=request.getContextPath()%>/logout"
+						class="nav-link">Sign Out</a></li>
+				</ul>
+			</c:if>
 		</nav>
 	</header>
 	<br>

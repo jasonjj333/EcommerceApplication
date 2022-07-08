@@ -14,16 +14,27 @@
 
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark"
-			style="background-color: #2b3b54">
+			style="background-color: #333232">
 			<div>
 				<a href="https://www.xadmin.net" class="navbar-brand"
 					style="color: white"> User Management Application </a>
 			</div>
 
-			<ul class="navbar-nav">
-				<li><a href="<%=request.getContextPath()%>/list"
-					class="nav-link">Users</a></li>
-			</ul>
+			<c:if test="${accountId != null && accountAdmin == 1}">
+				<ul class="navbar-nav">
+					<li><a href="<%=request.getContextPath()%>/list"
+						class="nav-link">Users</a></li>
+				</ul>
+			</c:if>
+
+			<c:if test="${accountId != null}">
+				<ul class="navbar-nav">
+					<li>
+						<a href="<%=request.getContextPath()%>/logout"
+						class="nav-link">Sign Out</a></li>
+				</ul>
+			</c:if>
+
 		</nav>
 	</header>
 	<br>
@@ -74,7 +85,7 @@
 						value="<c:out value='${user.billingAddress}' />"
 						class="form-control" name="billing_address">
 				</fieldset>
-				<c:if test="${accountUser != null && accountUser.admin == 1}">
+				<c:if test="${accountId != null && accountAdmin == 1}">
 					<fieldset class="form-group">
 						<label>Admin</label> <input type="text"
 							value="<c:out value='${user.admin}' />" class="form-control"
