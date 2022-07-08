@@ -16,7 +16,7 @@ A capstone project from HCL and Verizon to create a mock up e-commerce web appli
 - [x] Have user account information saved across page redirects and displayed after login
 - [ ] Account User stored in [UserServlet](/src/com/xadmin/usermanagement/web/UserServlet.java) and need to call request.setAttribute("accountUser",accountUser) for each new jsp page. Find more optimal solution  
 - [x] [user-form.jsp](/WebContent/user-form.jsp) is shared between customers and admins making accounts, should be seperate
-- [ ] [user-form.jsp](/WebContent/user-form.jsp) provides visibility based on logged in account. Change redirect after submitting  
+- [x] [user-form.jsp](/WebContent/user-form.jsp) provides visibility based on logged in account. Change redirect after submitting (customer -> customer-page.jsp | admin -> user-list.jsp)
 (customer -> [customer-page.jsp](/WebContent/customer-page.jsp) | admin -> [user-list.jsp](/WebContent/user-list.jsp))
 - [ ] Create log out button and function to clear account credentials
 #### Start on handling products:

@@ -7,14 +7,14 @@
 <meta charset="ISO-8859-1">
 <title>Sign in</title>
 <link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
-	integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 </head>
 <body>
 
 	<header>
-		<nav class="navbar navbar-expand-md"
+		<nav class="navbar navbar-expand-md navbar-dark"
 			style="background-color: #2b3b54">
 			<div>
 				<a href="https://www.xadmin.net" class="navbar-brand" style="color: white"> User
