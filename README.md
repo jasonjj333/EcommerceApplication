@@ -6,7 +6,7 @@ A capstone project from HCL and Verizon to create a mock up e-commerce web appli
 
 ## Latest Update
 
-- ***07/07/22*** New Account creation accessible to new users in login page. Log in credentials now saved across pages. Admins can now create admins/ update users to admins while customers cannot. 
+- ***07/07/22*** New Account creation accessible to new users in login page. Log in credentials now saved across pages. Admins can now create admins/ update users to admins while customers cannot. All redirects are correctly working for login, insert, create, update, delete, and select (list).
 - ***07/05/22*** Added login page for users to sign in to. Users can log in as admin and be redirected to user-list.jps, or as customers and be redirected to temporary placeholder page. Incorrect login information results in redirect back to login page.  
 
 ## What To Improve
