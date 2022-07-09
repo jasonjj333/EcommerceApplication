@@ -24,6 +24,11 @@
 					class="nav-link">Users</a></li>
 			</ul>
 			
+			<ul class="navbar-nav">
+				<li><a href="<%=request.getContextPath()%>/products"
+					class="nav-link">Products</a></li>
+			</ul>
+			
 			<c:if test="${accountId != null}">
 				<ul class="navbar-nav">
 					<li>

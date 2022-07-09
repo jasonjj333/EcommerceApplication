@@ -105,6 +105,13 @@ public class UserServlet extends HttpServlet {
 			}
 			break;
 
+		case "/products":
+			try {
+				goToProducts(request,response);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			break;
 		// handles list redirect
 		case "/list":
 			try {
@@ -126,6 +133,12 @@ public class UserServlet extends HttpServlet {
 		}
 	}
 	
+	private void goToProducts(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProductServlet/list");
+		dispatcher.forward(request, response);
+		
+	}
+
 	private void logoutUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			session.invalidate();
@@ -195,7 +208,8 @@ public class UserServlet extends HttpServlet {
 			else {
 				newUser.setAdmin(1);
 			}
-			if(request.getAttribute("accountId") == null) {
+			if(session.getAttribute("accountId") == null) {
+				System.out.println("New User Logged in");
 				session = request.getSession();
 				session.setAttribute("accountId", newUser.getId());
 				session.setAttribute("accountName", newUser.getName());
