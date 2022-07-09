@@ -31,7 +31,7 @@
 						<h2>Login</h2>
 					</caption>
 					<fieldset class="form-group">
-						<label>User Email</label> <input type="text"
+						<label>User Email</label> <input type="email"
 							value="<c:out value='${user.email}' />" class="form-control"
 							name="email" required="required">
 					</fieldset>
