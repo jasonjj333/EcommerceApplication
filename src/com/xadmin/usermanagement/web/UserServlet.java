@@ -136,7 +136,6 @@ public class UserServlet extends HttpServlet {
 	private void goToProducts(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProductServlet/list");
 		dispatcher.forward(request, response);
-		
 	}
 
 	private void logoutUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
